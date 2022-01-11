@@ -9,6 +9,16 @@ export const RepoList = () => {
   //Gets user data from context provider and uses it to make https request. It then maps the new data, sets it as a state and prints it.
   const user: User = useUserContext();
   const [repoMap, setRepos] = useState();
+  const [scrollState, setScroll] = useState(10);
+
+  const handleScroll = (event: any) => {
+    const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
+    let temp: number = clientHeight - scrollHeight;
+    console.log(temp);
+    if (scrollTop === scrollHeight - clientHeight) {
+      setScroll(scrollState + 10);
+    }
+  };
 
   useEffect(() => {
     console.log("Repo list:");
@@ -16,17 +26,20 @@ export const RepoList = () => {
     console.log(repoMap);
     if (user.name !== "") {
       let uri =
-        "https://api.github.com/users/" + user.name + "/repos?per_page=100";
+        "https://api.github.com/users/" +
+        user.name +
+        "/repos?per_page=" +
+        scrollState;
       try {
         fetch(uri)
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
-            console.log(data[0].stargazers_count);
             let tempArr: any = data;
-            tempArr = tempArr.sort(function (a: any, b: any) {
-              return b.stargazers_count - a.stargazers_count;
-            });
+            tempArr = tempArr
+              .sort(function (a: any, b: any) {
+                return b.stargazers_count - a.stargazers_count;
+              })
+              .slice(0, scrollState);
             var map = tempArr.map((choice: any) => {
               return (
                 <div
@@ -47,7 +60,7 @@ export const RepoList = () => {
         );
       }
     }
-  }, [user]);
+  }, [user, scrollState]);
 
-  return <StyledRepoList>{repoMap}</StyledRepoList>;
+  return <StyledRepoList onScroll={handleScroll}>{repoMap}</StyledRepoList>;
 };

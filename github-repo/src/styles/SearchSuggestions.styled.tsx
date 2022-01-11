@@ -4,12 +4,12 @@ export const StyledSearchSuggestions = styled.div`
   display: flex;
 
   .search-suggestion {
-    background-color: #f3f3f3;
-    color: black;
+    background-color: #e4b2ee;
+    color: #993899;
     padding: 3px;
     padding-left: 10px;
     &:hover {
-      background-color: #9b9999;
+      background-color: #782897;
       color: white;
     }
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -25,5 +25,21 @@ export const StyledSearchSuggestions = styled.div`
     max-height: 200px;
     width: 274px;
     flex-direction: column;
+
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      width: 20px;
+      background-color: #e4b2ee;
+      border-radius: 0 0 10px 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      width: 20px;
+      background-color: #5c2248;
+      border-radius: 10px;
+    }
   }
 `;

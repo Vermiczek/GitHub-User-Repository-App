@@ -4,7 +4,7 @@ export const StyledApp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 1200px;
+  min-height: 100vh;
   background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
   .header {
     font-size: 50px;

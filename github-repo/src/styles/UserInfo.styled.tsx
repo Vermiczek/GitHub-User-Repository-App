@@ -55,7 +55,7 @@ export const StyledUserInfo = styled.div<Props>`
     width: 140px;
     left: -40%;
     top: 15px;
-
+    transition: background-color 0.5s ease;
     &:hover {
       background-color: rgba(145, 152, 229, 1);
     }
