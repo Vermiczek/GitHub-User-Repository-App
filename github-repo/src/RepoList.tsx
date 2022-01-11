@@ -21,6 +21,10 @@ export const RepoList = () => {
   };
 
   useEffect(() => {
+    setScroll(10);
+  }, [user]);
+
+  useEffect(() => {
     console.log("Repo list:");
     console.log(user);
     console.log(repoMap);
